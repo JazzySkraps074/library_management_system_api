@@ -49,22 +49,33 @@ Use this JSON body with Member ```POST``` or ```PUT``` requests:
 ```JSON
 {
   "name": "John Smith"
-  "email": "jsmith123@gmail.com"
+  "email": "jsmith123@example.com"
   "membership_id": "1"
   "phone": "1234567890"
 }
 ```
+Member validation rules include:
+- `name` is required and must contain 1-120 characters.
+- `email` is required, must be unique, and it must be in a valid email format.
+- `membership_id` is required and must be unique.
+- `phone` is required.
 
 Use this JSON body with Book ```POST``` or ```PUT``` requests:
 ```JSON
 {
   "title": "Example Book"
   "author": "Jane Smith"
-  "isbn": "123-4-56-789012-3"
+  "isbn": "1234567890123"
   "published_year": "1990"
   "member-id": 1
 }
 ```
+Book validation rules include:
+- `title` is required and must contain 1-200 characters.
+- `author` is required and must contain 1-120 characters.
+- `isbn` is required and must be unique.
+- `published_year` is required and must be between 1450 and the current year.
+- `member_id` is required, and identifies the existing Member who borrowed the Book.
 
 ## Current project structure
 ```text
