@@ -24,7 +24,7 @@ uv run uvicorn app.main:app --reload
 ```
 
 ## Explore the API
-Below are three views 
+Below are three views of the same API contract
 - ```http://localhost/docs``` — Swagger UI for exploring and calling endpoints
 - ```http://localhost/redoc``` — ReDoc for reading reference documentation
 - ```http://localhost/openapi.json``` — the machine-readable OpenAPI document
