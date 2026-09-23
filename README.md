@@ -25,9 +25,9 @@ uv run uvicorn app.main:app --reload
 
 ## Explore the API
 Below are three views of the same API contract
-- ```http://localhost/docs``` — Swagger UI for exploring and calling endpoints
-- ```http://localhost/redoc``` — ReDoc for reading reference documentation
-- ```http://localhost/openapi.json``` — the machine-readable OpenAPI document
+- ```http://localhost:8000/docs``` — Swagger UI for exploring and calling endpoints
+- ```http://localhost:8000/redoc``` — ReDoc for reading reference documentation
+- ```http://localhost:8000/openapi.json``` — the machine-readable OpenAPI document
 
 | Method | URL | CRUD operation | Successful status |
 |---|---|---|---|
@@ -45,4 +45,39 @@ Below are three views of the same API contract
 | `PUT` | `/book/{book_id}` | Update a Book | `200 OK` |
 | `DELETE` | `/book/{book_id}` | Delete a Book | `204 No Content` |
 
+Use this JSON body with Member ```POST``` or ```PUT``` requests:
+```JSON
+{
+  "name": "John Smith"
+  "email": "jsmith123@gmail.com"
+  "membership_id": "1"
+  "phone": "1234567890"
+}
+```
+
+Use this JSON body with Book ```POST``` or ```PUT``` requests:
+```JSON
+{
+  "title": "Example Book"
+  "author": "Jane Smith"
+  "isbn": "123-4-56-789012-3"
+  "published_year": "1990"
+  "member-id": 1
+}
+```
+
 ## Current project structure
+```text
+library_management_system_api/
+├── app/
+│   ├── routers/
+│   │   ├── __init__.py
+│   │   ├── books.py
+│   │   └── members.py
+│   ├── __init__.py
+│   ├── main.py
+│   ├── schemas.py
+│   └── storage.py
+└── README.md
+└── uv.lock
+```
