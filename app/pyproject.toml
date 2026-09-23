@@ -1,0 +1,9 @@
+[project]
+name = "library_management_system_api"
+version = "1.0.0"
+description = "Library Management System API for managing members and books"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi[standard]>=0.116.0",
+]
