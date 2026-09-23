@@ -89,6 +89,6 @@ library_management_system_api/
 │   ├── main.py
 │   ├── schemas.py
 │   └── storage.py
+└── .gitignore
 └── README.md
-└── uv.lock
 ```
