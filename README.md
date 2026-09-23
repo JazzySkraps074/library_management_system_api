@@ -12,4 +12,6 @@ The ```main``` branch serves as a guide for all the assignments that make up thi
 
 To view a specific assignment locally, run:
 
-```git switch assignment-1```
+```bash
+git switch assignment-1
+```
