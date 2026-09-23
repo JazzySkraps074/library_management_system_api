@@ -40,9 +40,9 @@ Below are three views
 | `DELETE` | `/member/{member_id}` | Delete a Member | `204 No Content` |
 | `GET` | `/member/{member_id}/books` | Read one Member's Books | `200 OK` |
 | `GET` | `/book` | Read all Books | `200 OK` |
-| `GET` | `/member/{member_id}` | Read one Book | `200 OK` |
-| `POST` | `/member` | Create a Book | `201 Created` |
-| `PUT` | `/member/{member_id}` | Update a Book | `200 OK` |
-| `DELETE` | `/member/{member_id}` | Delete a Book | `204 No Content` |
+| `GET` | `/book/{book_id}` | Read one Book | `200 OK` |
+| `POST` | `/book` | Create a Book | `201 Created` |
+| `PUT` | `/book/{book_id}` | Update a Book | `200 OK` |
+| `DELETE` | `/book/{book_id}` | Delete a Book | `204 No Content` |
 
 ## Current project structure
