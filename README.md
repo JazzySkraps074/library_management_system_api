@@ -6,4 +6,4 @@ A single Member can check out multiple books, but the member cannot be deleted u
 ## Assignment branches
 | Branch | | Content |
 | --- | | --- |
-| ```assignment-1``` | | Create, retrieve, update, and delete books and members
+| ```assignment-1``` | | Create, retrieve, update, and delete books and members |
