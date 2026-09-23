@@ -74,7 +74,7 @@ Book validation rules include:
 - `title` is required and must contain 1-200 characters.
 - `author` is required and must contain 1-120 characters.
 - `isbn` is required and must be unique.
-- `published_year` is required and must be between 1450 and the current year.
+- `published_year` is required and must be between 1450 and 2026.
 - `member_id` is required, and identifies the existing Member who borrowed the Book.
 
 ## Current project structure
