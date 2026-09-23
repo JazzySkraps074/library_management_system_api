@@ -1,7 +1,7 @@
 # Library Management System API
 This project is an API system for managing the books and members of a library. It allows clients to create, retrieve, update, and delete book and member records.
 
-A single Member can check out multiple books, but the member cannot be deleted while they have books checked out.
+A single member can check out multiple books, but the member cannot be deleted while they have books checked out.
 
 ## Clone the project
 ```text
