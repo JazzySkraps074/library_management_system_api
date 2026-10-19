@@ -48,9 +48,9 @@ Below are three views of the same API contract
 Use this JSON body with Member ```POST``` or ```PUT``` requests:
 ```JSON
 {
-  "name": "John Smith"
-  "email": "jsmith123@example.com"
-  "membership_id": "1"
+  "name": "John Smith",
+  "email": "jsmith123@example.com",
+  "membership_id": "1",
   "phone": "1234567890"
 }
 ```
@@ -63,11 +63,11 @@ Member validation rules include:
 Use this JSON body with Book ```POST``` or ```PUT``` requests:
 ```JSON
 {
-  "title": "Example Book"
-  "author": "Jane Smith"
-  "isbn": "1234567890123"
-  "published_year": "1990"
-  "member-id": 1
+  "title": "Example Book",
+  "author": "Jane Smith",
+  "isbn": "1234567890123",
+  "published_year": 1990,
+  "member_id": 1
 }
 ```
 Book validation rules include:
