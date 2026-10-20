@@ -7,7 +7,7 @@ A single member can check out multiple books, but the member cannot be deleted w
 ```text
 git clone https://github.com/JazzySkraps074/library_management_system_api.git
 cd library_management_system_api
-git switch assignment-1
+git switch assignment-2
 ```
 
 ## Installation
@@ -22,6 +22,12 @@ Run the following command:
 ```bash
 uv run uvicorn app.main:app --reload
 ```
+## Project Scope
+- Routers handle HTTP requests and responses.
+- Services contain business rules and coordinate operations.
+- Repositories perform database operations.
+- ORM models map Python classes to PostgreSQL tables.
+- Pydantic schemas validate API request and response data.
 
 ## Explore the API
 Below are three views of the same API contract
@@ -81,13 +87,34 @@ Book validation rules include:
 ```text
 library_management_system_api/
 ├── app/
+│   ├── database/
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   └── session.py
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── book.py
+│   │   └── member.py
+│   ├── repositories/
+│   │   ├── __init__.py
+│   │   ├── books.py
+│   │   └── members.py
 │   ├── routers/
 │   │   ├── __init__.py
 │   │   ├── books.py
 │   │   └── members.py
+│   ├── schemas/
+│   │   ├── __init__.py
+│   │   ├── books.py
+│   │   └── members.py
+│   ├── services/
+│   │   ├── __init__.py
+│   │   ├── books.py
+│   │   └── members.py
 │   ├── __init__.py
+│   ├── config.py
+│   ├── exceptions.py
 │   ├── main.py
-│   ├── schemas.py
 │   └── storage.py
 └── .gitignore
 └── pyproject.toml
