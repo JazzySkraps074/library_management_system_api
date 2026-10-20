@@ -1,6 +1,6 @@
-from fastapi import APIRouter, HTTPException, status
-from app.schemas import MemberBase, MemberResponse
-from app.schemas import BookResponse
+from fastapi import APIRouter, HTTPException, status, Response
+from app.schemas.members import MemberBase, MemberResponse
+from app.schemas.books import BookResponse
 from app import storage
 
 router = APIRouter(prefix="/members", tags=["members"])
@@ -108,26 +108,28 @@ def replace_member(
 @router.delete(
     "/{member_id}",
     status_code=status.HTTP_204_NO_CONTENT,
+    response_model=None,
     summary="Delete a member",
     description="Delete the member identified by the path parameter.",
-    responses={404: {"description": "Member not found"},
-               409: {"description": "Member still has checked out books"},
-               },
+    responses={
+        404: {"description": "Member not found"},
+        409: {"description": "Member still has checked out books"},
+    },
 )
 
-def delete_member(member_id: int) -> MemberResponse:
+def delete_member(member_id: int) -> None:
     """Remove a member from the in-memory collection."""
     member = find_member(member_id)
 
     # Do not leave books pointing to a member that no longer exists.
-    if any(member_id == member_id for task in storage.books):
+    if any(book.member_id == member_id for book in storage.books):
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
             detail="Delete the member's books before deleting the member",
         )
 
     storage.members.remove(member)
-    return MemberResponse(status_code=status.HTTP_204_NO_CONTENT)
+    return None
 
 
 # This nested URL reads the books that belong to one member.

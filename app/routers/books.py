@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, status
-from app.schemas import BookBase, BookResponse
+from app.schemas.books import BookBase, BookResponse
 from app import storage
 
 router = APIRouter(prefix="/books", tags=["Books"])
@@ -100,12 +100,13 @@ def replace_Book(
 @router.delete(
     "/{book_id}",
     status_code=status.HTTP_204_NO_CONTENT,
+    response_model=None,
     summary="Delete a book",
     description="Delete the book identified by the path parameter.",
     responses={404: {"description": "Book not found"}},
 )
-def delete_book(book_id: int) -> BookResponse:
+def delete_book(book_id: int) -> None:
     """Remove a book from the in-memory collection."""
     book = find_book(book_id)
     storage.books.remove(book)
-    return BookResponse(status_code=status.HTTP_204_NO_CONTENT)
+    return None
