@@ -70,11 +70,11 @@ You can also use pgAdmin 4, a PostgreSQL GUI client (already installed by the Wi
 
 In pgAdmin 4:
 
-Host: `localhost`
-Port: `5432`
-Username: `postgres`
-Password: `postgres`
-Database: `library`
+- Host: `localhost`
+- Port: `5432`
+- Username: `postgres`
+- Password: `postgres`
+- Database: `library`
 
 Then open Schemas → public → Tables to inspect the tables.
 
