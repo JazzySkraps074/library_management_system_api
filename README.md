@@ -116,7 +116,10 @@ library_management_system_api/
 │   ├── exceptions.py
 │   ├── main.py
 │   └── storage.py
+└── .env
+└── .env.example
 └── .gitignore
 └── pyproject.toml
 └── README.md
+└── uv.lock
 ```
