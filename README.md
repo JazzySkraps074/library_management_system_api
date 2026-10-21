@@ -3,6 +3,13 @@ This project is an API system for managing the books and members of a library. I
 
 A single member can check out multiple books, but the member cannot be deleted while they have books checked out.
 
+## Project Scope
+- Routers handle HTTP requests and responses.
+- Services contain business rules and coordinate operations.
+- Repositories perform database operations.
+- ORM models map Python classes to PostgreSQL tables.
+- Pydantic schemas validate API request and response data.
+
 ## Clone the project
 ```text
 git clone https://github.com/JazzySkraps074/library_management_system_api.git
@@ -18,16 +25,58 @@ uv sync
 ```uv``` installs the required Python version when necessary, creates the project's virtual environment, and installs the dependencies recorded in ```uv.lock```.
 
 ## Running the API
+Before starting the API, copy the sample environment file:
+```bash
+cp .env.example .env
+```
+
+The local connection uses the database user account and password created by the database setup script:
+```bash
+DATABASE_URL=postgresql+psycopg://postgres:postgres@localhost:5432/library
+```
+
+To see SQLAlchemy-generated SQL in the development-server terminal, set this value in .env:
+```bash
+DATABASE_ECHO_SQL=true
+```
+Leave it set to false when SQL logging is not needed.
+
 Run the following command:
 ```bash
 uv run uvicorn app.main:app --reload
 ```
-## Project Scope
-- Routers handle HTTP requests and responses.
-- Services contain business rules and coordinate operations.
-- Repositories perform database operations.
-- ORM models map Python classes to PostgreSQL tables.
-- Pydantic schemas validate API request and response data.
+- FastAPI defines routes and handles API requests.
+- Uvicorn listens for HTTP connections and passes requests to FastAPI.
+- uv manages the Python environment and runs the installed command.
+- --reload restarts the development server after source-code changes.
+- Settings reads and validates .env and environment variables when the application starts.
+
+The development server is available at http://localhost:8000. On startup, the application creates the members and books tables when they do not exist.
+
+After the first successful startup, confirm that the members and books tables were created in library.
+
+From a terminal, run:
+```bash
+psql -h localhost -U postgres -d library -W -c '\dt'
+```
+On Windows PowerShell, if PostgreSQL has not yet been added to `PATH`, run:
+```bash
+& "C:\Program Files\PostgreSQL\18\bin\psql.exe" -h localhost -U postgres -d library -W -c "\dt"
+```
+
+Enter the local password, postgres, when prompted. The result should list the projects and tasks tables in the public schema.
+
+You can also use pgAdmin 4, a PostgreSQL GUI client (already installed by the Windows installer; macOS users may install it separately).
+
+In pgAdmin 4:
+
+    Host: `localhost`
+    Port: `5432`
+    Username: `postgres`
+    Password: `postgres`
+    Database: `library`
+
+Then open Schemas → public → Tables to inspect the tables.
 
 ## Explore the API
 Below are three views of the same API contract
