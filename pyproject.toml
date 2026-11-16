@@ -6,7 +6,23 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "fastapi[standard]>=0.116.0",
+    "email-validator>=2.2.0",
     "psycopg[binary]>=3.3.6",
     "pydantic-settings>=2.15.0",
     "sqlalchemy>=2.1.5",
 ]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "openapi-spec-validator>=0.7.2",
+    "pytest>=8.4.2",
+    "schemathesis>=4.1.0",
+    "testcontainers[postgres]>=4.13.2",
+]
+
+[tool.pytest.ini_options]
+# The app package lives in the repository root and tests reuse resource names.
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = ["--import-mode=importlib"]
