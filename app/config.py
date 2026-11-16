@@ -1,11 +1,31 @@
+"""Validated application settings and storage configuration."""
+
+from enum import StrEnum
+
+from pydantic import model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
+class StorageBackend(StrEnum):
+    DATABASE = "database"
+    MEMORY = "memory"
+
+
 class Settings(BaseSettings):
-    database_url: str
+    database_url: str | None = None
     database_echo_sql: bool = False
+    storage_backend: StorageBackend = StorageBackend.DATABASE
+    demo_member_token: str = "member-demo-token"
+    demo_admin_token: str = "admin-demo-token"
 
-    model_config = SettingsConfigDict(env_file=".env")
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
 
-
-settings = Settings()
+    @model_validator(mode="after")
+    def require_database_url_for_database_backend(self) -> "Settings":
+        if self.storage_backend is StorageBackend.DATABASE and not self.database_url:
+            raise ValueError("DATABASE_URL is required when STORAGE_BACKEND=database")
+        return self
