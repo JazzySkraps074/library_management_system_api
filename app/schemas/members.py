@@ -53,7 +53,7 @@ class MemberUpdate(MemberBase):
     """Validate the replacement body used to update a Member."""
 
 
-class MemberResponse(BaseModel):
+class MemberResponse(MemberBase):
     """Describe a Member returned by the API."""
 
     # Pydantic can read values from SQLAlchemy model attributes, not only from
