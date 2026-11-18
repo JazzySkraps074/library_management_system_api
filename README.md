@@ -239,7 +239,6 @@ library_management_system_api/
 │   │           ├── test_database.py
 │   │           └── test_in_memory.py
 │   └── conftest.py
-├── .env
 ├── .env.example
 ├── .gitignore
 ├── .python-version
