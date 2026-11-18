@@ -2,10 +2,15 @@
 
 from __future__ import annotations
 
-from sqlalchemy import Boolean, ForeignKey, String
+from typing import TYPE_CHECKING
+
+from sqlalchemy import ForeignKey, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.database.base import Base
+from app.models.base import Base
+
+if TYPE_CHECKING:
+    from app.models.member import Member
 
 
 class Book(Base):
@@ -18,9 +23,6 @@ class Book(Base):
     author: Mapped[str] = mapped_column(String(120), nullable=False)
     isbn: Mapped[str] = mapped_column(String(13), nullable=False, unique=True)
     published_year: Mapped[int] = mapped_column(nullable=False)
-    member_id: Mapped[int] = mapped_column(
-        ForeignKey("members.id"),
-        nullable=False
-    )
+    member_id: Mapped[int] = mapped_column(ForeignKey("members.id"), nullable=False)
 
     member: Mapped[Member] = relationship(back_populates="books")

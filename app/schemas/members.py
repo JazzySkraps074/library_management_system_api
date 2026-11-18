@@ -31,13 +31,15 @@ class MemberBase(BaseModel):
         examples=["jsmith123@example.com"],
     )
     membership_id: str = Field(
+        min_length=1,
         max_length=1,
         description="The membership identifier of the Member",
         examples=["1"],
     )
     phone: str = Field(
-        min_length=1,
+        min_length=10,
         max_length=10,
+        pattern=r"^[0-9]{10}$",
         description="The phone number of the Member",
         examples=["1234567890"],
     )
