@@ -131,6 +131,74 @@ def test_duplicate_email_membership_id_and_isbn_return_409_without_corrupting_da
     assert duplicate_book.status_code == 409
     assert len(database_client.get("/books", headers=member_headers).json()) == 1
 
+def test_book_update_with_duplicate_isbn_returns_409_without_changing_books(
+    database_client: TestClient,
+    admin_headers: dict[str, str],
+    member_headers: dict[str, str],
+) -> None:
+    member = database_client.post(
+        "/members", json=member_payload(), headers=admin_headers
+    ).json()
+
+    first = database_client.post(
+        "/books",
+        json=book_payload(member_id=member["id"]),
+        headers=admin_headers,
+    ).json()
+    second = database_client.post(
+        "/books",
+        json=book_payload(
+            isbn="987654321",
+            member_id=member["id"],
+            title="Second book",
+        ),
+        headers=admin_headers,
+    ).json()
+
+    response = database_client.put(
+        f"/books/{second['id']}",
+        json=book_payload(
+            isbn=first["isbn"],
+            member_id=member["id"],
+            title="Updated book",
+        ),
+        headers=admin_headers,
+    )
+
+    assert response.status_code == 409
+    assert database_client.get(
+        f"/books/{first['id']}", headers=member_headers
+    ).json() == first
+    assert database_client.get(
+        f"/books/{second['id']}", headers=member_headers
+    ).json() == second
+
+
+def test_book_update_with_missing_member_returns_404_without_changing_book(
+    database_client: TestClient,
+    admin_headers: dict[str, str],
+    member_headers: dict[str, str],
+) -> None:
+    member = database_client.post(
+        "/members", json=member_payload(), headers=admin_headers
+    ).json()
+    book = database_client.post(
+        "/books",
+        json=book_payload(member_id=member["id"]),
+        headers=admin_headers,
+    ).json()
+
+    response = database_client.put(
+        f"/books/{book['id']}",
+        json=book_payload(member_id=999),
+        headers=admin_headers,
+    )
+
+    assert response.status_code == 404
+    assert database_client.get(
+        f"/books/{book['id']}", headers=member_headers
+    ).json() == book
+
 
 def test_member_with_books_cannot_be_deleted_and_data_remains(
     database_client: TestClient,
