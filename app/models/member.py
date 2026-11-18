@@ -27,3 +27,4 @@ class Member(Base):
     # The relationship lets Python navigate member.books. The foreign key is
     # stored on Book because Book is the "many" side of the relationship.
     books: Mapped[list[Book]] = relationship(back_populates="member")
+
