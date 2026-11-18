@@ -162,34 +162,43 @@ For details, read [Unit and Integration Testing](docs/testing-unit-integration.m
 library_management_system_api/
 ├── app/
 │   ├── auth/
+│   │   ├── __init__.py
 │   │   ├── dependencies.py
 │   │   └── users.py
 │   ├── database/
 │   │   └── session.py
 │   ├── models/
+│   │   ├── __init__.py
 │   │   ├── base.py
 │   │   ├── book.py
 │   │   └── member.py
 │   ├── repositories/
+│   │   ├── __init__.py
 │   │   ├── books.py
 │   │   └── members.py
 │   ├── routers/
+│   │   ├── __init__.py
 │   │   ├── books.py
 │   │   ├── http_errors.py
 │   │   └── members.py
 │   ├── schemas/
+│   │   ├── __init__.py
 │   │   ├── books.py
 │   │   └── members.py
 │   ├── services/
 │   │   ├── books/
+│   │   |   ├── __init__.py
 │   │   │   ├── base.py
 │   │   │   ├── database.py
 │   │   │   └── in_memory.py
 │   │   ├── members/
+│   │   |   ├── __init__.py
 │   │   │   ├── base.py
 │   │   │   ├── database.py
 │   │   │   └── in_memory.py
+│   │   ├── __init__.py
 │   │   └── in_memory_store.py
+│   ├── __init__.py
 │   ├── config.py
 │   ├── dependencies.py
 │   ├── exceptions.py
@@ -230,7 +239,9 @@ library_management_system_api/
 │   │           ├── test_database.py
 │   │           └── test_in_memory.py
 │   └── conftest.py
+├── .env
 ├── .env.example
+├── .gitignore
 ├── .python-version
 ├── pyproject.toml
 ├── README.md
