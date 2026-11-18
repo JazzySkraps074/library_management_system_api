@@ -113,7 +113,7 @@ curl -X POST http://localhost:8000/members \
 
 Book requests require a title (1–200 characters), author (1–120), ISBN (1–13), published year (1450–2026), and positive `member_id`. Member requests require a name (1–120), a valid email, a one-character membership ID, and a ten-digit phone number. Surrounding whitespace is removed; unknown JSON fields are rejected.
 
-An invalid or missing token returns `401 Unauthorized` with a Bearer challenge. A member token on a write returns `403 Forbidden`. Validation errors return `422`, missing records return `404`, and duplicate identifiers, nonexistent Member references, or blocked Member deletion return `409` where documented.
+An invalid or missing token returns `401 Unauthorized` with a Bearer challenge. A member token on a write returns `403 Forbidden`. Validation errors return `422`, missing records return `404`, and duplicate identifiers and blocked Member deletion return `409`, nonexistent Member references return `404`, or blocked Member deletion return `409` where documented.
 
 ## Request flow
 
